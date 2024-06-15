@@ -1,0 +1,4 @@
+name: BansX
+version: ${project.version}
+author: Wand
+main: dev.wand.bungee.BansX
