@@ -1,40 +1,41 @@
-package dev.wand.bungee.command;
+package dev.wand.spigot.command;
 
-import dev.wand.bungee.BansX;
-import dev.wand.bungee.effect.EffectorManager;
-import dev.wand.bungee.util.TextUtil;
 import dev.wand.data.DataPlayer;
 import dev.wand.data.command.CommandParser;
 import dev.wand.data.command.ParsedCommand;
 import dev.wand.effect.EffectManager;
 import dev.wand.punish.Punishment;
 import dev.wand.punish.enums.PunishmentType;
+import dev.wand.spigot.BansX;
+import dev.wand.spigot.util.TextUtil;
 import dev.wand.util.TimeUtil;
 import dev.wand.util.WrappedPosition;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
-public class BanCommand extends Command {
-    public BanCommand() {
-        super("ban", "bansx.ban", "tempban", "tb", "tban");
-    }
-
+/**
+ * @author Salers
+ * made on dev.wand.spigot.command
+ */
+public class BanCommand implements CommandExecutor {
     @Override
-    public void execute(CommandSender sender, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length < 1) {
             TextUtil.sendTranslated(sender, "&cUsage: /ban <player> <reason>");
-            return;
+            return false;
         }
 
         String playerName = args[0];
 
-        String server = sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName() : "CONSOLE";
+        String server = sender instanceof Player ? ((Player) sender).getDisplayName() : "CONSOLE";
 
         ParsedCommand parsedCommand = CommandParser.parsePunishCommand(args);
 
-        ProxiedPlayer player = ProxyServer.getInstance().getPlayer(playerName);
+        Player player = Bukkit.getPlayer(playerName);
         DataPlayer dataPlayer;
         if (player != null) {
             dataPlayer = BansX.getDataManager().getPlayerData(player.getUniqueId());
@@ -42,13 +43,21 @@ public class BanCommand extends Command {
             dataPlayer = BansX.getDataManager().getPlayerData(playerName);
             if (dataPlayer == null) {
                 TextUtil.sendTranslated(sender, "&cPlayer has never joined before.");
-                return;
+                return true;
             }
 
         }
 
+
         execute(sender, playerName, server, parsedCommand, dataPlayer);
-        EffectManager.INSTANCE.applyToPlayer(null);
+        EffectManager.INSTANCE.applyToPlayer(new WrappedPosition(
+                player.getLocation().getX(),
+                player.getLocation().getY(),
+                player.getLocation().getZ(),
+                player.getWorld().getName()
+
+        ));
+        return false;
     }
 
     private void execute(CommandSender sender, String playerName, String server, ParsedCommand parsedCommand, DataPlayer dataPlayer) {
