@@ -1,7 +1,5 @@
 package dev.wand.data;
 
-import dev.wand.punish.Punishment;
-import dev.wand.punish.enums.PunishmentType;
 import lombok.Data;
 
 @Data

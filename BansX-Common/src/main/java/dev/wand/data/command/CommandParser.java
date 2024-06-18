@@ -2,13 +2,11 @@ package dev.wand.data.command;
 
 import dev.wand.util.TimeUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class CommandParser {
 
     /**
      * Parses a punish command.
+     *
      * @param args The arguments of the command
      * @return The parsed command.
      */

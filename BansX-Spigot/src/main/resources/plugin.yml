@@ -2,3 +2,10 @@ name: BansX
 version: ${project.version}
 author: Wand
 main: dev.wand.spigot.BansX
+softdepend:
+  - ProtocolLib
+  - ProtocolSupport
+  - ViaVersion
+  - ViaBackwards
+  - ViaRewind
+  - Geyser-Spigot

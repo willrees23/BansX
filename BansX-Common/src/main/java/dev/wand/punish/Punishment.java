@@ -5,30 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @AllArgsConstructor
 public class Punishment {
 
-    private String id;
-
     private final String user;
     private final String executor;
-
     private final String server;
-
     private final String reason;
-
     private final long datetime;
     private final long expiry;
     private final long duration;
-
     private final PunishmentType type;
-
+    private String id;
     @Setter
     private Removal removal;
 

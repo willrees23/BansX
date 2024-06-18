@@ -62,6 +62,7 @@ public class TimeUtil {
     /**
      * Converts milliseconds to a difference between the current time and the given time.
      * Example: Time = 1000, Current Time = 2000, Difference = 1000, returns "1s"
+     *
      * @param millis The time in milliseconds
      * @return The difference between the current time and the given time
      */

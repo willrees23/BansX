@@ -1,10 +1,12 @@
 package dev.wand.bungee.command;
 
 import dev.wand.bungee.BansX;
+import dev.wand.bungee.effect.EffectorManager;
 import dev.wand.bungee.util.TextUtil;
 import dev.wand.data.DataPlayer;
 import dev.wand.data.command.CommandParser;
 import dev.wand.data.command.ParsedCommand;
+import dev.wand.effect.PunishEffect;
 import dev.wand.punish.Punishment;
 import dev.wand.punish.enums.PunishmentType;
 import dev.wand.util.TimeUtil;
@@ -32,18 +34,20 @@ public class BanCommand extends Command {
         ParsedCommand parsedCommand = CommandParser.parsePunishCommand(args);
 
         ProxiedPlayer player = ProxyServer.getInstance().getPlayer(playerName);
+        DataPlayer dataPlayer;
         if (player != null) {
-            DataPlayer dataPlayer = BansX.getDataManager().getPlayerData(player.getUniqueId());
-            execute(sender, playerName, server, parsedCommand, dataPlayer);
+            dataPlayer = BansX.getDataManager().getPlayerData(player.getUniqueId());
         } else {
-            DataPlayer dataPlayer = BansX.getDataManager().getPlayerData(playerName);
+            dataPlayer = BansX.getDataManager().getPlayerData(playerName);
             if (dataPlayer == null) {
                 TextUtil.sendTranslated(sender, "&cPlayer has never joined before.");
                 return;
             }
 
-            execute(sender, playerName, server, parsedCommand, dataPlayer);
         }
+
+        execute(sender, playerName, server, parsedCommand, dataPlayer);
+        EffectorManager.showEffect((ProxiedPlayer) sender, PunishEffect.MINEPLEX_GWEN);
     }
 
     private void execute(CommandSender sender, String playerName, String server, ParsedCommand parsedCommand, DataPlayer dataPlayer) {
