@@ -1,6 +1,5 @@
 package dev.wand.effect.impl;
 
-import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityTypes;
 import com.github.retrooper.packetevents.protocol.player.User;
 import com.github.retrooper.packetevents.protocol.world.Location;
@@ -15,10 +14,10 @@ import dev.wand.util.WrappedPosition;
 public class MineplexGwenEffect implements IPunishEffector {
 
     @Override
-    public void show(WrappedPosition contextPosition, String uuid) {
+    public void show(WrappedPosition contextPosition, User user) {
         WrapperPlayServerSpawnEntity entity = new WrapperPlayServerSpawnEntity(1, null, EntityTypes.GUARDIAN,
-                new Location(contextPosition.getX(),contextPosition.getY(), contextPosition.getZ(), 0f, 0f), 50, 0, null);
-        User user = PacketEvents.getAPI().getPlayerManager().getUser(uuid);
+                new Location(contextPosition.getX(), contextPosition.getY(), contextPosition.getZ(), 0f, 0f),
+                50, 0, null);
         user.sendPacket(entity);
     }
 

@@ -1,6 +1,7 @@
 package dev.wand.effect;
 
 import dev.wand.effect.impl.MineplexGwenEffect;
+import dev.wand.util.PlayerUtil;
 import dev.wand.util.WrappedPosition;
 import lombok.Getter;
 
@@ -22,7 +23,7 @@ public enum EffectManager {
         this.activeEffect = PunishEffects.MINEPLEX_GWEN.getEffector();
     }
 
-    public void applyToPlayer(WrappedPosition wrappedPosition) {
-        this.activeEffect.show(wrappedPosition);
+    public void applyToPlayer(WrappedPosition wrappedPosition, String uuid) {
+        this.activeEffect.show(wrappedPosition, PlayerUtil.getFromUUID(uuid));
     }
 }

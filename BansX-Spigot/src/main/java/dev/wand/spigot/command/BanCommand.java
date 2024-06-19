@@ -56,7 +56,7 @@ public class BanCommand implements CommandExecutor {
                 player.getLocation().getZ(),
                 player.getWorld().getName()
 
-        ));
+        ), dataPlayer.getUuid());
         return false;
     }
 

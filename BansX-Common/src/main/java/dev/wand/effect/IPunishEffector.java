@@ -1,5 +1,6 @@
 package dev.wand.effect;
 
+import com.github.retrooper.packetevents.protocol.player.User;
 import dev.wand.util.WrappedPosition;
 
 /**
@@ -12,7 +13,7 @@ import dev.wand.util.WrappedPosition;
  */
 public interface IPunishEffector {
 
-    void show(WrappedPosition contextPosition, String uuid);
+    void show(WrappedPosition contextPosition, User user);
 
     String name();
 }
