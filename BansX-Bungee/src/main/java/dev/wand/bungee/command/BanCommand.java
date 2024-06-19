@@ -1,7 +1,6 @@
 package dev.wand.bungee.command;
 
 import dev.wand.bungee.BansX;
-import dev.wand.bungee.effect.EffectorManager;
 import dev.wand.bungee.util.TextUtil;
 import dev.wand.data.DataPlayer;
 import dev.wand.data.command.CommandParser;
@@ -10,7 +9,6 @@ import dev.wand.effect.EffectManager;
 import dev.wand.punish.Punishment;
 import dev.wand.punish.enums.PunishmentType;
 import dev.wand.util.TimeUtil;
-import dev.wand.util.WrappedPosition;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class WrappedPosition {
 
-    private final double x,y,z;
+    private final double x, y, z;
     private final String world;
 }

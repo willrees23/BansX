@@ -1,11 +1,8 @@
 package dev.wand.effect;
 
-import dev.wand.effect.impl.MineplexGwenEffect;
 import dev.wand.util.PlayerUtil;
 import dev.wand.util.WrappedPosition;
 import lombok.Getter;
-
-import java.util.List;
 
 /**
  * @author Salers

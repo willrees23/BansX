@@ -2,7 +2,6 @@ package dev.wand.bungee.event;
 
 import dev.wand.bungee.BansX;
 import dev.wand.data.DataPlayer;
-import dev.wand.effect.EffectManager;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
