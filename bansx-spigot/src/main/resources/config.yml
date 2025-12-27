@@ -1,0 +1,93 @@
+storage:
+  type: FILE
+  base-path: "plugins/BansX"
+
+mysql:
+  host: "localhost:3306"
+  database: "bansx"
+  user: "user"
+  password: "password"
+
+sqlite:
+  path: "plugins/BansX/bansx.db"
+
+tracks:
+  griefing:
+    - step: 1
+      type: WARN
+      duration: permanent
+      ip: false
+    - step: 2
+      type: BAN
+      duration: 1d
+      ip: false
+    - step: 3
+      type: BAN
+      duration: 7d
+      ip: true
+  spam:
+    - step: 1
+      type: MUTE
+      duration: 5m
+      ip: false
+    - step: 2
+      type: MUTE
+      duration: 30m
+      ip: false
+    - step: 3
+      type: BAN
+      duration: 1h
+      ip: false
+  hacking:
+    - step: 1
+      type: BAN
+      duration: 7d
+      ip: true
+    - step: 2
+      type: BAN
+      duration: permanent
+      ip: true
+  xray:
+    - step: 1
+      type: BAN
+      duration: 3d
+      ip: false
+    - step: 2
+      type: BAN
+      duration: 14d
+      ip: false
+  exploiting:
+    - step: 1
+      type: BAN
+      duration: 1d
+      ip: false
+    - step: 2
+      type: BAN
+      duration: 7d
+      ip: false
+  harassment:
+    - step: 1
+      type: MUTE
+      duration: 10m
+      ip: false
+    - step: 2
+      type: MUTE
+      duration: 1h
+      ip: false
+    - step: 3
+      type: BAN
+      duration: 1d
+      ip: false
+  racism:
+    - step: 1
+      type: MUTE
+      duration: 30m
+      ip: false
+    - step: 2
+      type: BAN
+      duration: 1d
+      ip: false
+    - step: 3
+      type: BAN
+      duration: permanent
+      ip: true

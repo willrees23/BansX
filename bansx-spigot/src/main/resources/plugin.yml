@@ -1,0 +1,33 @@
+name: BansX
+version: 1.0-SNAPSHOT
+main: com.github.wand.bansx.BansXPlugin
+api-version: 1.21
+
+commands:
+  punish:
+    description: Punish a player
+    usage: /punish <player> <reason>
+    permission: bansx.punish
+  bansx:
+    description: BansX admin commands
+    usage: /bansx <reload>
+    permission: bansx.admin
+  history:
+    description: View a player's punishment history
+    usage: /history <player> [page]
+    permission: bansx.history
+  infraction:
+    description: View detailed information about a punishment
+    usage: /infraction <id>
+    permission: bansx.history
+
+permissions:
+  bansx.punish:
+    description: Allows punishing players
+    default: op
+  bansx.admin:
+    description: Allows admin commands
+    default: op
+  bansx.history:
+    description: Allows viewing punishment history
+    default: op
