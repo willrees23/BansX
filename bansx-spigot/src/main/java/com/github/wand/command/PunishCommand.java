@@ -79,7 +79,12 @@ public class PunishCommand implements CommandExecutor, TabCompleter {
             if (punishment.type() == PunishmentType.WARN && onlinePlayer != null) {
                 onlinePlayer.sendMessage(messagesConfig.getWarningReceived(punishment.reason()));
             }
-            // Ban enforcement now handled on login attempt
+            if (punishment.type() == PunishmentType.BAN) {
+                // enforce ban immediately
+                if (onlinePlayer != null) {
+                    onlinePlayer.kickPlayer(messagesConfig.getBannedKick(punishment.reason(), punishment.durationMs()));
+                }
+            }
         } catch (Exception e) {
             sender.sendMessage(messagesConfig.getUnexpectedError(e.getMessage()));
         }
