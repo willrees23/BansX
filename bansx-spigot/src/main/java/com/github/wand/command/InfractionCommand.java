@@ -55,15 +55,25 @@ public class InfractionCommand implements CommandExecutor {
 
         // Display punishment details
         sendMessage(sender, messagesConfig.getPunishmentDetails());
+
+        String durationString = TimeUtil.formatDuration(
+                p.durationMs()
+        );
+        long remainingMs = p.creationTimestamp() + p.durationMs() - System.currentTimeMillis();
+        String remaining = p.durationMs() == 0 ? "" : " (" + TimeUtil.formatRemainingTime(remainingMs) + " left)";
+        if (p.active()) {
+            durationString += remaining;
+        }
+
         if (sender instanceof Player player) {
             SpigotTextBuilder builder = SpigotTextBuilder.create()
-                .text("&7ID: &f" + p.id()).copy(p.id().toString()).hover("&eCopy punishment UUID").newline()
-                .text("&7Player: &f" + getPlayerName(p.playerUuid())).copy(p.playerUuid().toString()).hover("&eCopy player UUID").newline()
-                .text("&7Type: &f" + p.type()).newline()
-                .text("&7Reason: &f" + p.reason()).newline()
-                .text("&7Created: &f" + TimeUtil.formatTimeAgo(System.currentTimeMillis() - p.creationTimestamp())).newline()
-                .text("&7Duration: &f" + (p.durationMs() == 0 ? "Permanent" : TimeUtil.formatDuration(p.durationMs()))).newline()
-                .text("&7Active: &f" + (p.active() ? "Yes" : "No"));
+                    .text("&7ID: &f" + p.id()).copy(p.id().toString()).hover("&eCopy punishment UUID").newline()
+                    .text("&7Player: &f" + getPlayerName(p.playerUuid())).copy(p.playerUuid().toString()).hover("&eCopy player UUID").newline()
+                    .text("&7Type: &f" + p.type()).newline()
+                    .text("&7Reason: &f" + p.reason()).newline()
+                    .text("&7Created: &f" + TimeUtil.formatTimeAgo(System.currentTimeMillis() - p.creationTimestamp())).newline()
+                    .text("&7Duration: &f" + durationString).newline()
+                    .text("&7Active: &f" + (p.active() ? "Yes" : "No"));
             if (p.ip() != null) {
                 builder.newline().text("&7IP: &f" + p.ip());
             }
@@ -77,7 +87,7 @@ public class InfractionCommand implements CommandExecutor {
             sendMessage(sender, "&7Type: &f" + p.type());
             sendMessage(sender, "&7Reason: &f" + p.reason());
             sendMessage(sender, "&7Created: &f" + TimeUtil.formatTimeAgo(System.currentTimeMillis() - p.creationTimestamp()));
-            sendMessage(sender, "&7Duration: &f" + (p.durationMs() == 0 ? "Permanent" : TimeUtil.formatDuration(p.durationMs())));
+            sendMessage(sender, "&7Duration: &f" + durationString);
             sendMessage(sender, "&7Active: &f" + (p.active() ? "Yes" : "No"));
             if (p.ip() != null) {
                 sendMessage(sender, "&7IP: &f" + p.ip());
